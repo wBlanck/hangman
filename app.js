@@ -1,7 +1,7 @@
 // https://random-word-api.herokuapp.com/word?number=1 get random word
 // https://rapidapi.com/community/api/urban-dictionary/ get definition
-/* 
-const getRandomWord = async () => {
+
+/* const getRandomWord = async () => {
   const base = "https://random-words-api.vercel.app/word";
 
   const response = await fetch(base);
@@ -14,21 +14,17 @@ getRandomWord()
   .then((data) => console.log(data.word + " => definition: " + data.definition))
   .catch((error) => console.log(error));
  */
-
 const chars =
   "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z".split(
     ", "
   );
-const word = "tiger".toUpperCase();
+const word = "hello".toUpperCase();
 const answerContainer = document.querySelector(".answer");
 const charsContainer = document.querySelector(".chars");
 const displayContainer = document.querySelector(".display");
 
 let livesLeft = 9;
-
-// render out "_" based on word length
-// render out all the chars
-// when clicked on char, check every char in the correct word if match
+let correctCharsLeft = word.length;
 
 const renderElements = () => {
   let charsHtml = "";
@@ -52,10 +48,15 @@ const renderElements = () => {
 };
 
 const checkChar = (char, element) => {
+  // if word contains the clicked char, loop through the correct word char by char, compare clicked char to correct char if true display it
+  // else livesLeft--
   if (word.includes(char)) {
     for (let i = 0; i < word.length; i++) {
       if (char === word[i]) {
-        /* console.log(char, word[i]); */
+        correctCharsLeft--;
+        if (!correctCharsLeft) {
+          console.log("you won");
+        }
         const correctCharElement = answerContainer.children[i];
 
         correctCharElement.textContent = char;
@@ -77,9 +78,12 @@ const checkChar = (char, element) => {
 };
 charsContainer.addEventListener("click", (e) => {
   const char = e.target.textContent;
+  const clickedAChar = char.length <= 1;
+  const gotLives = livesLeft > 0;
+  const notWonYet = correctCharsLeft != 0;
+  const notPressedBefore = e.target.classList.length <= 1;
 
-  // if clicked on any char inside charsContainer && more than 0 lives left && hasnt been clicked before
-  if (char.length <= 1 && livesLeft > 0 && e.target.classList.length <= 1) {
+  if (clickedAChar && gotLives && notWonYet && notPressedBefore) {
     checkChar(char, e.target);
   }
 });
