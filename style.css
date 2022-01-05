@@ -39,6 +39,11 @@ body {
   width: 500px;
   height: 400px;
   background-color: gray;
+  text-align: left;
+}
+
+.display i {
+  color: red;
 }
 
 .answer {

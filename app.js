@@ -22,6 +22,8 @@ const chars =
 const word = "tiger".toUpperCase();
 const answerContainer = document.querySelector(".answer");
 const charsContainer = document.querySelector(".chars");
+const displayContainer = document.querySelector(".display");
+
 let livesLeft = 9;
 
 // render out "_" based on word length
@@ -31,6 +33,7 @@ let livesLeft = 9;
 const renderElements = () => {
   let charsHtml = "";
   let answerHtml = "";
+  let livesHtml = "";
 
   chars.forEach((char) => {
     charsHtml += `<div class="char">${char}</div>`;
@@ -41,6 +44,11 @@ const renderElements = () => {
     answerHtml += `<div class="correct-char underline"></div>`;
   }
   answerContainer.innerHTML = answerHtml;
+
+  for (let i = 0; i < livesLeft; i++) {
+    livesHtml += ` <i class="fas fa-heart"></i>`;
+  }
+  displayContainer.innerHTML = livesHtml;
 };
 
 const checkChar = (char, element) => {
@@ -58,6 +66,7 @@ const checkChar = (char, element) => {
   } else {
     element.classList.add("fade-out--wrong");
     livesLeft--;
+    displayContainer.children[0].remove();
     if (!livesLeft) {
       console.log("you lose buddy");
       element.classList.add("fade-out--wrong");
