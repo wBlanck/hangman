@@ -103,7 +103,7 @@ const chars =
   "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z".split(
     ", "
   );
-const word = "dataword".toUpperCase();
+const word = "Honorificabilitudinitatibus".toUpperCase();
 const definition = "Click the right chars you dumb fuck";
 
 const answerContainer = document.querySelector(".answer");
@@ -139,7 +139,6 @@ const tradeLife = () => {
   const charsLeft = Array.from(answerContainer.children).filter(
     (ele) => ele.classList.length > 1
   );
-
   const randomNum = Math.floor(Math.random() * charsLeft.length);
   //randomize one hidden char
   const randomChar = charsLeft[randomNum];
