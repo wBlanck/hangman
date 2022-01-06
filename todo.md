@@ -1,0 +1,8 @@
+ideas
+
+- add a loader, only render elements when fetched random word is complete
+- add hint button
+- add trade 1 life for a char
+- store api key safely (watch https://www.youtube.com/watch?v=WDwhJNbWka0)
+- keep score, if guessed right generate new word and keep score
+- start screen
