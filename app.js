@@ -103,7 +103,7 @@ const chars =
   "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z".split(
     ", "
   );
-const word = "Honorificabilitudinitatibus".toUpperCase();
+const word = "Honorificabilit".toUpperCase();
 const hint = "Its not right you silly goose";
 const definition = "Click the right chars you dumb";
 
