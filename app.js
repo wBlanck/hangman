@@ -109,6 +109,7 @@ const definition = "Click the right chars you dumb fuck";
 const answerContainer = document.querySelector(".answer");
 const charsContainer = document.querySelector(".chars");
 const displayContainer = document.querySelector(".display");
+const livesContainer = document.querySelector(".lives");
 const tradeLifeBtn = document.querySelector(".trade-btn");
 let livesLeft = 9;
 let correctCharsLeft = word.length;
@@ -129,9 +130,9 @@ const renderElements = () => {
   answerContainer.innerHTML = answerHtml;
 
   for (let i = 0; i < livesLeft; i++) {
-    livesHtml += ` <i class="fas fa-heart"></i>`;
+    livesHtml += `<i class="fas fa-heart"></i>`;
   }
-  displayContainer.innerHTML = livesHtml;
+  livesContainer.innerHTML = livesHtml;
 };
 
 const tradeLife = () => {
@@ -187,15 +188,14 @@ const checkChar = (char, element) => {
     }
   }
 };
+
 charsContainer.addEventListener("click", (e) => {
-  console.log(word);
   const char = e.target.textContent;
   const clickedAChar = char.length <= 1;
   const gotLives = livesLeft > 0;
   const notWonYet = correctCharsLeft != 0;
   const notPressedBefore = e.target.classList.length <= 1;
 
-  console.log(char, clickedAChar, gotLives, notWonYet, notPressedBefore);
   if (clickedAChar && gotLives && notWonYet && notPressedBefore) {
     console.log("check char");
     checkChar(char, e.target);

@@ -52,11 +52,13 @@ body {
   text-align: left;
   margin: auto;
 }
-
-.display i {
+.lives {
+  display: flex;
+  gap: 5px;
+}
+.lives i {
   color: red;
 }
-
 .answer {
   display: flex;
   align-items: end;
