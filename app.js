@@ -157,7 +157,7 @@ const tradeLife = () => {
   checkChar(hiddenChar, charElement[0]);
 
   livesLeft--;
-  displayContainer.children[0].remove();
+  livesContainer.children[0].remove();
 };
 const checkChar = (char, element) => {
   // if word contains the clicked char, loop through the correct word char by char, compare clicked char to correct char if true display it
@@ -179,7 +179,7 @@ const checkChar = (char, element) => {
   } else {
     element.classList.add("fade-out--wrong");
     livesLeft--;
-    displayContainer.children[0].remove();
+    livesContainer.children[0].remove();
     if (!livesLeft) {
       console.log("you lose buddy");
       element.classList.add("fade-out--wrong");
