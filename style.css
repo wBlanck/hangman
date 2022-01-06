@@ -51,6 +51,7 @@ body {
   background-color: gray;
   text-align: left;
   margin: auto;
+  position: relative;
 }
 .lives {
   display: flex;
@@ -58,6 +59,16 @@ body {
 }
 .lives i {
   color: red;
+}
+.hint {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.hint p {
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 .answer {
   display: flex;
@@ -67,10 +78,10 @@ body {
   height: 40px;
   margin-block: 20px;
 }
+
 .correct-char {
   line-height: 0.7;
 }
-
 .chars {
   display: flex;
   flex-wrap: wrap;
