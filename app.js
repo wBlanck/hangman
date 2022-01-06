@@ -135,7 +135,26 @@ const renderElements = () => {
 };
 
 const tradeLife = () => {
-  let currentWord = [];
+  //hidden chars left to guess
+  const charsLeft = Array.from(answerContainer.children).filter(
+    (ele) => ele.classList.length > 1
+  );
+
+  const randomNum = Math.floor(Math.random() * charsLeft.length);
+  //randomize one hidden char
+  const randomChar = charsLeft[randomNum];
+  //store index of hidden char in parent container (answerContainer)
+  let indexOfChar = Array.from(randomChar.parentNode.children).indexOf(
+    randomChar
+  );
+  //store the hidden char
+  let hiddenChar = word[indexOfChar];
+  //filter out the hidden char element from the key char
+  let charElement = Array.from(charsContainer.children).filter(
+    (char) => char.textContent === hiddenChar
+  );
+  //check the hidden char and the key char element
+  checkChar(hiddenChar, charElement[0]);
 
   livesLeft--;
   displayContainer.children[0].remove();
