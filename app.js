@@ -31,10 +31,12 @@ const displayContainer = document.querySelector(".display");
 const livesContainer = document.querySelector(".lives");
 const hintContainer = document.querySelector(".hint");
 const tradeButtons = document.querySelector(".buttons");
-const tradeLifeBtn = document.querySelector(".trade-btn");
+const charBtn = document.querySelector(".trade-btn");
 const hintBtn = document.querySelector(".hint-btn");
 const tradeModal = document.querySelector(".trade-modal");
-const tradeModalButtons = document.querySelector(".trade-modal .buttons");
+const tradeModalButtons = document.querySelectorAll(
+  ".trade-modal .buttons button"
+);
 
 let livesLeft = 9;
 let correctCharsLeft = word.length;
@@ -60,37 +62,41 @@ const renderElements = () => {
   livesContainer.innerHTML = livesHtml;
 };
 const showHint = () => {
-  //if hint hidden show hint in exchange for 1 life
-  if (!hintContainer.innerHTML) {
-    hintContainer.innerHTML = `<p>Hint: ${hint}</p>`;
-    livesLeft--;
-    livesContainer.children[0].remove();
-  }
-};
-const tradeLife = () => {
-  //hidden chars left to guess
-  const charsLeft = Array.from(answerContainer.children).filter(
-    (ele) => ele.classList.length > 1
-  );
-  const randomNum = Math.floor(Math.random() * charsLeft.length);
-  //randomize one hidden char
-  const randomChar = charsLeft[randomNum];
-  //store index of hidden char in parent container (answerContainer)
-  let indexOfChar = Array.from(randomChar.parentNode.children).indexOf(
-    randomChar
-  );
-  //store the hidden char
-  let hiddenChar = word[indexOfChar];
-  //filter out the hidden char element from the key char
-  let charElement = Array.from(charsContainer.children).filter(
-    (char) => char.textContent === hiddenChar
-  );
-  //check the hidden char and the key char element
-  checkChar(hiddenChar, charElement[0]);
-
+  hintContainer.innerHTML = `<p>Hint: ${hint}</p>`;
   livesLeft--;
   livesContainer.children[0].remove();
+  hintBtn.remove();
 };
+const tradeLife = (choice) => {
+  console.log(choice);
+  if (choice === "char") {
+    //hidden chars left to guess
+    const charsLeft = Array.from(answerContainer.children).filter(
+      (ele) => ele.classList.length > 1
+    );
+    const randomNum = Math.floor(Math.random() * charsLeft.length);
+    //randomize one hidden char
+    const randomChar = charsLeft[randomNum];
+    //store index of hidden char in parent container (answerContainer)
+    let indexOfChar = Array.from(randomChar.parentNode.children).indexOf(
+      randomChar
+    );
+    //store the hidden char
+    let hiddenChar = word[indexOfChar];
+    //filter out the hidden char element from the key char
+    let charElement = Array.from(charsContainer.children).filter(
+      (char) => char.textContent === hiddenChar
+    );
+    //check the hidden char and the key char element
+    checkChar(hiddenChar, charElement[0]);
+
+    livesLeft--;
+    livesContainer.children[0].remove();
+  } else if (choice === "hint" && !hintContainer.innerHTML) {
+    showHint();
+  }
+};
+
 const checkChar = (char, element) => {
   // if word contains the clicked char, loop through the correct word char by char, compare clicked char to correct char if true display it
   // else livesLeft--
@@ -121,25 +127,30 @@ const checkChar = (char, element) => {
   }
 };
 
-const confirmAndCloseModal = (e, choice) => {
-  console.log(e.target.textContent);
-  if (e.target.textContent === "Yes") {
-    tradeModal.classList.toggle("show");
-    tradeLife();
+const confirmAndCloseModal = (choice) => {
+  if (choice === "Yes") {
+    tradeModal.classList.remove("show");
+    console.log(`i want to trade a life for: ${choice}`);
+    tradeLife(choice);
   } else {
-    tradeModal.classList.toggle("show");
+    console.log(`i dont want to trade`);
+    tradeModal.classList.remove("show");
   }
 };
 
 const confirmTrade = (choice) => {
-  console.log(choice);
-  tradeModal.classList.toggle("show");
-  if (choice === "Hint") {
-    tradeModalButtons.addEventListener("click", confirmAndCloseModal);
-  } else if (choice === "Char") {
-    tradeModalButtons.addEventListener("click", confirmAndCloseModal);
-  }
+  tradeModal.classList.add("show");
+  tradeModalButtons[0].onclick = (e) => {
+    tradeModal.classList.remove("show");
+    console.log(`i want to trade a life for: ${choice}`);
+    tradeLife(choice);
+  };
+  tradeModalButtons[1].onclick = (e) => {
+    console.log(`i dont want to trade`);
+    tradeModal.classList.remove("show");
+  };
 };
+
 charsContainer.addEventListener("click", (e) => {
   const char = e.target.textContent;
   const clickedAChar = char.length <= 1;
@@ -154,10 +165,11 @@ charsContainer.addEventListener("click", (e) => {
 });
 
 tradeButtons.addEventListener("click", (e) => {
-  if (e.target.textContent === "Char") {
-    confirmTrade(e.target.textContent);
-  } else if (e.target.textContent === "Hint") {
-    confirmTrade(e.target.textContent);
+  const buttonClicked = e.target.textContent.toLowerCase();
+  if (buttonClicked === "char") {
+    confirmTrade(buttonClicked);
+  } else if (buttonClicked === "hint") {
+    confirmTrade(buttonClicked);
   }
 });
 
