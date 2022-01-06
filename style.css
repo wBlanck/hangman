@@ -80,6 +80,15 @@ button:active {
   width: clamp(15px, 3vmin, 25px);
   background-color: black;
 }
+
+.game-over {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
 .display {
   width: min(500px, 100%);
   height: 400px;
@@ -137,6 +146,7 @@ i {
   font-size: var(--step-0);
   height: 40px;
   margin-block: 20px;
+  color: #000;
 }
 
 .correct-char {

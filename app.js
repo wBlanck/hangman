@@ -25,7 +25,13 @@ const fetchData = async () => {
 };
 
 fetchData()
-  .then((data) => playGame(data[0], data[1]))
+  .then((data) => {
+    if (data[1]) {
+      playGame(data[0], data[1]);
+    } else {
+      location.reload();
+    }
+  })
   .catch((error) => console.log(error));
 
 const playGame = (randomWord, definition) => {
@@ -56,7 +62,11 @@ const playGame = (randomWord, definition) => {
     let charsHtml = "";
     let answerHtml = "";
     let livesHtml = "";
-
+    livesLeft = 9;
+    correctCharsLeft = word.length;
+    answerContainer.style.color = "#000";
+    charBtn.textContent = "Char";
+    hintBtn.style.display = "inline-block";
     chars.forEach((char) => {
       charsHtml += `<div class="char">${char}</div>`;
     });
@@ -76,7 +86,7 @@ const playGame = (randomWord, definition) => {
     hintContainer.innerHTML = `<p>Hint: ${hint}</p>`;
     livesLeft--;
     livesContainer.children[0].remove();
-    hintBtn.remove();
+    hintBtn.style.display = "none";
   };
   const showChar = () => {
     //hidden chars left to guess
@@ -117,8 +127,10 @@ const playGame = (randomWord, definition) => {
       for (let i = 0; i < word.length; i++) {
         if (char === word[i]) {
           correctCharsLeft--;
+          //CHECK IF WON
           if (!correctCharsLeft) {
-            console.log("you won");
+            charBtn.textContent = "Restart Game";
+            answerContainer.style.color = "green";
           }
           const correctCharElement = answerContainer.children[i];
 
@@ -131,23 +143,14 @@ const playGame = (randomWord, definition) => {
       element.classList.add("fade-out--wrong");
       livesLeft--;
       livesContainer.children[0].remove();
+      // CHECK IF LOST
       if (!livesLeft) {
-        console.log("you lose buddy");
+        charBtn.textContent = "Restart Game";
+        answerContainer.style.color = "red";
         element.classList.add("fade-out--wrong");
       } else {
         console.log(`lives: ${livesLeft} left`);
       }
-    }
-  };
-
-  const confirmAndCloseModal = (choice) => {
-    if (choice === "Yes") {
-      tradeModal.classList.remove("show");
-      console.log(`i want to trade a life for: ${choice}`);
-      tradeLife(choice);
-    } else {
-      console.log(`i dont want to trade`);
-      tradeModal.classList.remove("show");
     }
   };
 
@@ -179,12 +182,23 @@ const playGame = (randomWord, definition) => {
 
   tradeButtons.addEventListener("click", (e) => {
     const buttonClicked = e.target.textContent.toLowerCase();
+    console.log(buttonClicked);
     if (buttonClicked === "char") {
       confirmTrade(buttonClicked);
     } else if (buttonClicked === "hint") {
       confirmTrade(buttonClicked);
+    } else if (buttonClicked === "restart game") {
+      /* renderElements(); */
+      location.reload();
     }
   });
 
   renderElements();
 };
+
+const chars =
+  "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z".split(
+    ", "
+  );
+/* const word = "abc".toUpperCase();
+const hint = "this is the hint you shitheadd"; */
