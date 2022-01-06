@@ -63,6 +63,8 @@ body {
   text-align: left;
   margin: auto;
   position: relative;
+  border-radius: 5px;
+  padding: 5px;
 }
 .lives {
   display: flex;
