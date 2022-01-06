@@ -6,4 +6,5 @@ ideas
 - keep score, if guessed right generate new word and keep score
 - start screen
 - refactor tradeLife(hint/char) choose what to trade
+- add confirmation when trading life
 - max chars in word 15 ish, if more fetch another word
