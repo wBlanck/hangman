@@ -55,8 +55,8 @@ button:active {
   justify-content: center;
 }
 .show {
-  visibility: visible;
-  opacity: 1;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 .fade-out--wrong:active,
 .fade-out--correct:active {

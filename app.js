@@ -30,8 +30,12 @@ const charsContainer = document.querySelector(".chars");
 const displayContainer = document.querySelector(".display");
 const livesContainer = document.querySelector(".lives");
 const hintContainer = document.querySelector(".hint");
+const tradeButtons = document.querySelector(".buttons");
 const tradeLifeBtn = document.querySelector(".trade-btn");
 const hintBtn = document.querySelector(".hint-btn");
+const tradeModal = document.querySelector(".trade-modal");
+const tradeModalButtons = document.querySelector(".trade-modal .buttons");
+
 let livesLeft = 9;
 let correctCharsLeft = word.length;
 
@@ -117,6 +121,25 @@ const checkChar = (char, element) => {
   }
 };
 
+const confirmAndCloseModal = (e, choice) => {
+  console.log(e.target.textContent);
+  if (e.target.textContent === "Yes") {
+    tradeModal.classList.toggle("show");
+    tradeLife();
+  } else {
+    tradeModal.classList.toggle("show");
+  }
+};
+
+const confirmTrade = (choice) => {
+  console.log(choice);
+  tradeModal.classList.toggle("show");
+  if (choice === "Hint") {
+    tradeModalButtons.addEventListener("click", confirmAndCloseModal);
+  } else if (choice === "Char") {
+    tradeModalButtons.addEventListener("click", confirmAndCloseModal);
+  }
+};
 charsContainer.addEventListener("click", (e) => {
   const char = e.target.textContent;
   const clickedAChar = char.length <= 1;
@@ -129,7 +152,13 @@ charsContainer.addEventListener("click", (e) => {
     checkChar(char, e.target);
   }
 });
-tradeLifeBtn.addEventListener("click", tradeLife);
-hintBtn.addEventListener("click", showHint);
+
+tradeButtons.addEventListener("click", (e) => {
+  if (e.target.textContent === "Char") {
+    confirmTrade(e.target.textContent);
+  } else if (e.target.textContent === "Hint") {
+    confirmTrade(e.target.textContent);
+  }
+});
 
 renderElements();
