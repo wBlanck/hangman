@@ -22,16 +22,24 @@ body {
   align-items: center;
   justify-content: center;
 }
-.fade-out--correct {
-  cursor: default !important;
-  background-color: green !important;
-  color: gray;
+.fade-out--wrong:active,
+.fade-out--correct:active {
+  transform: none !important;
+  box-shadow: none !important;
 }
+.fade-out--correct,
 .fade-out--wrong {
   cursor: default !important;
-  background-color: red !important;
-  color: gray;
+  color: gray !important;
+  box-shadow: none !important;
 }
+.fade-out--wrong {
+  background-color: red !important;
+}
+.fade-out--correct {
+  background-color: green !important;
+}
+
 .underline {
   height: 3px;
   width: 25px;
