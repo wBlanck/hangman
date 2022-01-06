@@ -104,13 +104,16 @@ const chars =
     ", "
   );
 const word = "Honorificabilitudinitatibus".toUpperCase();
-const definition = "Click the right chars you dumb fuck";
+const hint = "Its not right you silly goose";
+const definition = "Click the right chars you dumb";
 
 const answerContainer = document.querySelector(".answer");
 const charsContainer = document.querySelector(".chars");
 const displayContainer = document.querySelector(".display");
 const livesContainer = document.querySelector(".lives");
+const hintContainer = document.querySelector(".hint");
 const tradeLifeBtn = document.querySelector(".trade-btn");
+const hintBtn = document.querySelector(".hint-btn");
 let livesLeft = 9;
 let correctCharsLeft = word.length;
 
@@ -134,7 +137,14 @@ const renderElements = () => {
   }
   livesContainer.innerHTML = livesHtml;
 };
-
+const showHint = () => {
+  //if hint hidden show hint in exchange for 1 life
+  if (!hintContainer.innerHTML) {
+    hintContainer.innerHTML = `<p>Hint: ${hint}</p>`;
+    livesLeft--;
+    livesContainer.children[0].remove();
+  }
+};
 const tradeLife = () => {
   //hidden chars left to guess
   const charsLeft = Array.from(answerContainer.children).filter(
@@ -202,4 +212,6 @@ charsContainer.addEventListener("click", (e) => {
   }
 });
 tradeLifeBtn.addEventListener("click", tradeLife);
+hintBtn.addEventListener("click", showHint);
+
 renderElements();
