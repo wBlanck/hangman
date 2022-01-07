@@ -92,7 +92,82 @@ button:active {
   padding: 5px;
   margin-bottom: 5px;
 }
-
+.hangman {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.hangman > * {
+  position: absolute;
+  background-color: #fff;
+}
+.ground {
+  bottom: 10px;
+  height: 1px;
+  width: 50%;
+}
+.pole-h {
+  bottom: 10px;
+  left: 30px;
+  height: 80%;
+  width: 2px;
+}
+.pole-v {
+  top: 20%;
+  left: 30px;
+  height: 2px;
+  width: 30%;
+}
+.rope {
+  width: 1px;
+  height: 15%;
+  left: calc(21% + clamp(1.8rem, 4vw, 2.8rem));
+  top: 20%;
+}
+.head {
+  height: min(35px, 6vmin);
+  width: min(35px, 6vmin);
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: transparent;
+  top: 35%;
+  left: calc(18% + clamp(1.8rem, 4vw, 2.8rem) + -2px);
+}
+.torso {
+  width: 2px;
+  height: 7vmin;
+  left: calc(21% + clamp(1.8rem, 4vw, 2.8rem));
+  top: 45%;
+}
+.left-arm {
+  height: 2px;
+  width: 8%;
+  left: calc(14% + clamp(1.8rem, 4vw, 2.8rem) + 1px);
+  top: 51%;
+  transform: rotate(-45deg);
+}
+.right-arm {
+  height: 2px;
+  width: 8%;
+  left: calc(20% + clamp(1.8rem, 4vw, 2.8rem) + 1px);
+  top: 51%;
+  transform: rotate(45deg);
+}
+.left-leg {
+  height: 2px;
+  width: 8%;
+  left: calc(16% + clamp(1.8rem, 4vw, 2.8rem) + 1px);
+  top: calc(52% + 6vmin);
+  transform: rotate(-75deg);
+}
+.right-leg {
+  height: 2px;
+  width: 8%;
+  left: calc(18% + clamp(1.8rem, 4vw, 2.8rem) + 1px);
+  top: calc(52% + 6vmin);
+  transform: rotate(75deg);
+}
 .lives {
   display: flex;
   gap: 5px;
