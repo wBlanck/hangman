@@ -6,3 +6,6 @@ ideas
 - start screen
 - max chars in word 15 ish, if more fetch another word
 - show the correct word when lost
+- fix mobile screen (display, title etc)
+- change location.reload()
+- cant trade when only 1 life left

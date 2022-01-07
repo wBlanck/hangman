@@ -113,9 +113,9 @@ const playGame = (randomWord, definition) => {
     livesContainer.children[0].remove();
   };
   const tradeLife = (choice) => {
-    if (choice === "char") {
+    if (choice === "char" && livesLeft > 1) {
       showChar();
-    } else if (choice === "hint" && !hintContainer.innerHTML) {
+    } else if (choice === "hint" && !hintContainer.innerHTML && livesLeft > 1) {
       showHint();
     }
   };
