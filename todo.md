@@ -8,4 +8,3 @@ ideas
 - show the correct word when lost
 - fix mobile screen (display, title etc)
 - change location.reload()
-- cant trade when only 1 life left

@@ -62,26 +62,34 @@ const playGame = (randomWord, definition) => {
     let charsHtml = "";
     let answerHtml = "";
     let livesHtml = "";
+    let tradeButtonsHtml = "";
     livesLeft = 9;
     correctCharsLeft = word.length;
     answerContainer.style.color = "#000";
-    charBtn.textContent = "Char";
-    hintBtn.style.display = "inline-block";
+
+    tradeButtonsHtml = `
+      <button class="trade-btn">Char</button>
+      <button class="hint-btn">Hint</button>
+    `;
+    //renders out the trade buttons
+    tradeButtons.innerHTML = tradeButtonsHtml;
+    //renders out char buttons
     chars.forEach((char) => {
       charsHtml += `<div class="char">${char}</div>`;
     });
-
     charsContainer.innerHTML = charsHtml;
+    //renders out a "_" for each char in word
     for (let i = 0; i < word.length; i++) {
       answerHtml += `<div class="correct-char underline"></div>`;
     }
     answerContainer.innerHTML = answerHtml;
-
+    //renders the lives
     for (let i = 0; i < livesLeft; i++) {
       livesHtml += `<i class="fas fa-heart"></i>`;
     }
     livesContainer.innerHTML = livesHtml;
   };
+
   const showHint = () => {
     hintContainer.innerHTML = `<p>Hint: ${hint}</p>`;
     livesLeft--;
