@@ -123,6 +123,14 @@ const playGame = (randomWord, definition) => {
     hangmanParts[livesLeft].style.opacity = "1";
     livesContainer.children[0].remove();
   };
+
+  const showChars = () => {
+    Array.from(answerContainer.children).forEach((ele, i) => {
+      ele.textContent = word[i];
+      ele.classList.remove("underline");
+    });
+  };
+
   const tradeLife = (choice) => {
     if (choice === "char" && livesLeft > 1) {
       showChar();
@@ -160,6 +168,7 @@ const playGame = (randomWord, definition) => {
         tradeButtons.children[0].textContent = "Restart Game";
         answerContainer.style.color = "red";
         element.classList.add("fade-out--wrong");
+        showChars();
       } else {
         console.log(`lives: ${livesLeft} left`);
       }
@@ -194,7 +203,7 @@ const playGame = (randomWord, definition) => {
 
   tradeButtons.addEventListener("click", (e) => {
     const buttonClicked = e.target.textContent.toLowerCase();
-    console.log(buttonClicked);
+
     if (buttonClicked === "char") {
       confirmTrade(buttonClicked);
     } else if (buttonClicked === "hint") {
