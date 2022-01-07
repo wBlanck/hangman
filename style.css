@@ -83,7 +83,7 @@ button:active {
 
 .display {
   width: min(500px, 100%);
-  height: 400px;
+  height: min(350px, 60vw);
   background-color: gray;
   text-align: left;
   margin: auto;

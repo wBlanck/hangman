@@ -203,10 +203,3 @@ const playGame = (randomWord, definition) => {
 
   renderElements();
 };
-
-const chars =
-  "A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z".split(
-    ", "
-  );
-/* const word = "abc".toUpperCase();
-const hint = "this is the hint you shitheadd"; */
