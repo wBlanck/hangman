@@ -104,14 +104,14 @@ button:active {
   opacity: 0;
 }
 .ground {
-  bottom: 10px;
+  bottom: 50px;
   height: 1px;
   width: 50%;
 }
 .pole-h {
-  bottom: 10px;
+  bottom: 50px;
   left: 30px;
-  height: 80%;
+  height: 68%;
   width: 2px;
 }
 .pole-v {
