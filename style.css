@@ -84,7 +84,7 @@ button:active {
 .display {
   width: min(500px, 100%);
   height: min(350px, 60vw);
-  background-color: gray;
+  background-color: #222;
   text-align: left;
   margin: auto;
   position: relative;
@@ -179,6 +179,7 @@ i {
 .hint {
   width: 100%;
   text-align: center;
+  margin-bottom: 10px;
 }
 .hint p {
   font-size: 0.8rem;
