@@ -101,6 +101,7 @@ button:active {
 .hangman > * {
   position: absolute;
   background-color: #fff;
+  opacity: 0;
 }
 .ground {
   bottom: 10px;

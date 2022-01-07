@@ -54,6 +54,7 @@ const playGame = (randomWord, definition) => {
   const tradeModalButtons = document.querySelectorAll(
     ".trade-modal .buttons button"
   );
+  const hangmanParts = document.querySelectorAll(".hangman div");
 
   let livesLeft = 10;
   let correctCharsLeft = word.length;
@@ -93,8 +94,9 @@ const playGame = (randomWord, definition) => {
   const showHint = () => {
     hintContainer.innerHTML = `<p>Hint: ${hint}</p>`;
     livesLeft--;
+    hangmanParts[livesLeft].style.opacity = "1";
     livesContainer.children[0].remove();
-    hintBtn.style.display = "none";
+    tradeButtons.children[1].style.display = "none";
   };
   const showChar = () => {
     //hidden chars left to guess
@@ -118,6 +120,7 @@ const playGame = (randomWord, definition) => {
     checkChar(hiddenChar, charElement[0]);
 
     livesLeft--;
+    hangmanParts[livesLeft].style.opacity = "1";
     livesContainer.children[0].remove();
   };
   const tradeLife = (choice) => {
@@ -137,7 +140,7 @@ const playGame = (randomWord, definition) => {
           correctCharsLeft--;
           //CHECK IF WON
           if (!correctCharsLeft) {
-            charBtn.textContent = "Restart Game";
+            tradeButtons.children[0].textContent = "Restart Game";
             answerContainer.style.color = "green";
           }
           const correctCharElement = answerContainer.children[i];
@@ -150,10 +153,11 @@ const playGame = (randomWord, definition) => {
     } else {
       element.classList.add("fade-out--wrong");
       livesLeft--;
+      hangmanParts[livesLeft].style.opacity = "1";
       livesContainer.children[0].remove();
       // CHECK IF LOST
       if (!livesLeft) {
-        charBtn.textContent = "Restart Game";
+        tradeButtons.children[0].textContent = "Restart Game";
         answerContainer.style.color = "red";
         element.classList.add("fade-out--wrong");
       } else {
