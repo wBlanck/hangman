@@ -55,7 +55,7 @@ const playGame = (randomWord, definition) => {
     ".trade-modal .buttons button"
   );
 
-  let livesLeft = 9;
+  let livesLeft = 10;
   let correctCharsLeft = word.length;
 
   const renderElements = () => {
@@ -63,7 +63,7 @@ const playGame = (randomWord, definition) => {
     let answerHtml = "";
     let livesHtml = "";
     let tradeButtonsHtml = "";
-    livesLeft = 9;
+    livesLeft = 10;
     correctCharsLeft = word.length;
     answerContainer.style.color = "#000";
 
